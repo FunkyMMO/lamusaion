@@ -19,12 +19,10 @@ package quest.stigma_vision;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.*;
-import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.network.aion.SystemMessageId;
-import com.aionemu.gameserver.network.aion.serverpackets.SM_DIALOG_WINDOW;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.questEngine.handlers.QuestHandler;
@@ -393,38 +391,6 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler {
         } else if (var == 8) {
           return true;
         }
-      }
-    }
-    return false;
-  }
-
-  private int getStoneId(Player player) {
-    switch (player.getCommonData().getPlayerClass()) {
-      case GLADIATOR:
-      case TEMPLAR:
-      case ASSASSIN:
-      case RANGER:
-        return 140000003; // Ferocious Strike III
-      case SORCERER:
-      case SPIRIT_MASTER:
-      case CLERIC:
-        return 140000002; // Flame Cage I
-      case CHANTER:
-        return 140000003; // Ferocious Strike III
-      case GUNSLINGER:
-      case SONGWEAVER:
-      case AETHERTECH:
-        return 140000004; // Hydro Eruption II
-      default:
-        return 0;
-    }
-  }
-
-  private boolean isStigmaEquipped(QuestEnv env) {
-    Player player = env.getPlayer();
-    for (Item i : player.getEquipment().getEquippedItemsAllStigma()) {
-      if (i.getItemId() == getStoneId(player)) {
-        return true;
       }
     }
     return false;
