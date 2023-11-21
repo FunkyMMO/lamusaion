@@ -28,7 +28,6 @@
 	<players_service_bonusattr buff_id="9"/>
 	<!-- Eminence Of The Bearer -->
 	<players_service_bonusattr buff_id="10">
-		<apply_bonus stat="DR_BOOST" func="ADD" value="10"/>
 		<apply_bonus stat="SPEED" func="PERCENT" value="5"/>
 	</players_service_bonusattr>
 </players_service_bonusattrs>
