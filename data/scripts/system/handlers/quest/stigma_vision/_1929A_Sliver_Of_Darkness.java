@@ -19,10 +19,12 @@ package quest.stigma_vision;
 
 import com.aionemu.gameserver.dataholders.DataManager;
 import com.aionemu.gameserver.model.*;
+import com.aionemu.gameserver.model.gameobjects.Item;
 import com.aionemu.gameserver.model.gameobjects.Npc;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.model.gameobjects.state.CreatureState;
 import com.aionemu.gameserver.network.aion.SystemMessageId;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_DIALOG_WINDOW;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_EMOTION;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
 import com.aionemu.gameserver.questEngine.handlers.QuestHandler;
@@ -238,14 +240,27 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler {
     switch (dialog) {
       case USE_OBJECT:
         if (var == 96) {
-          return sendQuestDialog(env, 2716);
+          if (isStigmaEquipped(env)) {
+            return sendQuestDialog(env, 2716);
+          } else {
+            PacketSendUtility.sendPacket(
+              player,
+              new SM_DIALOG_WINDOW(env.getVisibleObject().getObjectId(), 1)
+            );
+            return closeDialogWindow(env);
+          }
         }
       case START_DIALOG:
         return (var == 98) && sendQuestDialog(env, 2375);
       case SELECT_ACTION_2546:
         if (var == 98) {
-          changeQuestStep(env, 98, 96, false);
-          return closeDialogWindow(env);
+          if (giveQuestItem(env, getStoneId(player), 1)) {
+            PacketSendUtility.sendPacket(
+              player,
+              new SM_DIALOG_WINDOW(env.getVisibleObject().getObjectId(), 1)
+            );
+            return true;
+          }
         }
       case SELECT_ACTION_2720:
         if (var == 96) {
@@ -296,6 +311,55 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler {
       }
     }
     return false;
+  }
+
+  private int getStoneId(Player player) {
+    switch (player.getCommonData().getPlayerClass()) {
+      case GLADIATOR:
+      case TEMPLAR:
+      case ASSASSIN:
+      case RANGER:
+      case CHANTER:
+        {
+          return 140000003; //Ferocious Strike III
+        }
+      case SORCERER:
+      case SPIRIT_MASTER:
+      case CLERIC:
+        {
+          return 140000002; //Flame Cage I
+        }
+      case GUNSLINGER:
+      case SONGWEAVER:
+      case AETHERTECH:
+        {
+          return 140000004; //Hydro Eruption II
+        }
+      default:
+        {
+          return 0;
+        }
+    }
+  }
+
+  private boolean isStigmaEquipped(QuestEnv env) {
+    Player player = env.getPlayer();
+    for (Item i : player.getEquipment().getEquippedItemsAllStigma()) {
+      if (i.getItemId() == getStoneId(player)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private void removeStigma(QuestEnv env) {
+    Player player = env.getPlayer();
+    for (Item item : player
+      .getEquipment()
+      .getEquippedItemsByItemId(getStoneId(player))) {
+      player.getEquipment().unEquipItem(item.getObjectId(), 0);
+    }
+    removeQuestItem(env, getStoneId(player), 1);
   }
 
   @Override
@@ -353,6 +417,7 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler {
     if (qs != null && qs.getStatus() == QuestStatus.START) {
       int var = qs.getQuestVars().getQuestVars();
       if (var >= 93 && var <= 98) {
+        removeStigma(env);
         qs.setQuestVar(2);
         updateQuestStatus(env);
         PacketSendUtility.sendPacket(
@@ -378,6 +443,7 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler {
       int var = qs.getQuestVars().getQuestVars();
       if (player.getWorldId() != 310070000) {
         if (var >= 93 && var <= 98) {
+          removeStigma(env);
           qs.setQuestVar(2);
           updateQuestStatus(env);
           PacketSendUtility.sendPacket(
@@ -389,6 +455,7 @@ public class _1929A_Sliver_Of_Darkness extends QuestHandler {
           );
           return true;
         } else if (var == 8) {
+          removeStigma(env);
           return true;
         }
       }

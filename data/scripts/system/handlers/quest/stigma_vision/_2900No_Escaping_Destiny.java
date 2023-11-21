@@ -266,9 +266,12 @@ public class _2900No_Escaping_Destiny extends QuestHandler {
               case SELECT_ACTION_3058:
                 {
                   if (var == 96) {
-                    if (!isStigmaEquipped(env)) {
-                      changeQuestStep(env, 96, 97, false);
-                      return closeDialogWindow(env);
+                    if (
+                      giveQuestItem(env, getStoneId(player), 1) &&
+                      !isStigmaEquipped(env)
+                    ) {
+                      changeQuestStep(env, 96, 99, false);
+                      return sendQuestDialog(env, 3058);
                     } else {
                       return closeDialogWindow(env);
                     }
@@ -366,6 +369,7 @@ public class _2900No_Escaping_Destiny extends QuestHandler {
       int var = qs.getQuestVars().getQuestVars();
       if (player.getWorldId() != 320070000) {
         if (var >= 95 && var <= 99) {
+          removeStigma(env);
           qs.setQuestVar(4);
           updateQuestStatus(env);
           PacketSendUtility.sendPacket(
@@ -390,6 +394,7 @@ public class _2900No_Escaping_Destiny extends QuestHandler {
       int var = qs.getQuestVars().getQuestVars();
       if (player.getWorldId() != 320070000) {
         if (var >= 95 && var <= 99) {
+          removeStigma(env);
           qs.setQuestVar(4);
           updateQuestStatus(env);
           PacketSendUtility.sendPacket(
@@ -401,6 +406,7 @@ public class _2900No_Escaping_Destiny extends QuestHandler {
           );
           return true;
         } else if (var == 9) {
+          removeStigma(env);
           return true;
         }
       }
@@ -411,45 +417,21 @@ public class _2900No_Escaping_Destiny extends QuestHandler {
   private int getStoneId(Player player) {
     switch (player.getCommonData().getPlayerClass()) {
       case GLADIATOR:
-        {
-          return 140000003; //Ferocious Strike III
-        }
       case TEMPLAR:
-        {
-          return 140000003; //Ferocious Strike III
-        }
       case ASSASSIN:
-        {
-          return 140000003; //Ferocious Strike III
-        }
       case RANGER:
-        {
-          return 140000003; //Ferocious Strike III
-        }
-      case SORCERER:
-        {
-          return 140000002; //Flame Cage I
-        }
-      case SPIRIT_MASTER:
-        {
-          return 140000002; //Flame Cage I
-        }
-      case CLERIC:
-        {
-          return 140000002; //Flame Cage I
-        }
       case CHANTER:
         {
           return 140000003; //Ferocious Strike III
         }
+      case SORCERER:
+      case SPIRIT_MASTER:
+      case CLERIC:
+        {
+          return 140000002; //Flame Cage I
+        }
       case GUNSLINGER:
-        {
-          return 140000004; //Hydro Eruption II
-        }
       case SONGWEAVER:
-        {
-          return 140000004; //Hydro Eruption II
-        }
       case AETHERTECH:
         {
           return 140000004; //Hydro Eruption II
@@ -459,6 +441,16 @@ public class _2900No_Escaping_Destiny extends QuestHandler {
           return 0;
         }
     }
+  }
+
+  private void removeStigma(QuestEnv env) {
+    Player player = env.getPlayer();
+    for (Item item : player
+      .getEquipment()
+      .getEquippedItemsByItemId(getStoneId(player))) {
+      player.getEquipment().unEquipItem(item.getObjectId(), 0);
+    }
+    removeQuestItem(env, getStoneId(player), 1);
   }
 
   private boolean isStigmaEquipped(QuestEnv env) {
