@@ -14,8 +14,9 @@
  *  along with Aion-Lightning.
  *  If not, see <http://www.gnu.org/licenses/>.
  */
-package ai.events;
+package ai.event;
 
+import ai.ActionItemNpcAI2;
 import com.aionemu.gameserver.ai2.AIName;
 import com.aionemu.gameserver.model.gameobjects.player.Player;
 import com.aionemu.gameserver.network.aion.serverpackets.SM_DIALOG_WINDOW;
@@ -23,8 +24,6 @@ import com.aionemu.gameserver.questEngine.QuestEngine;
 import com.aionemu.gameserver.questEngine.model.QuestEnv;
 import com.aionemu.gameserver.skillengine.SkillEngine;
 import com.aionemu.gameserver.utils.PacketSendUtility;
-
-import ai.ActionItemNpcAI2;
 
 /**
  * @author Falke_34 & FrozenKiller
@@ -34,21 +33,32 @@ import ai.ActionItemNpcAI2;
 // 833669
 public class LegendaryToyBearAI2 extends ActionItemNpcAI2 {
 
-	@Override
-	protected void handleUseItemFinish(Player player) {
-		PacketSendUtility.sendPacket(player, new SM_DIALOG_WINDOW(getObjectId(), 10));
-	}
+  @Override
+  protected void handleUseItemFinish(Player player) {
+    PacketSendUtility.sendPacket(
+      player,
+      new SM_DIALOG_WINDOW(getObjectId(), 10)
+    );
+  }
 
-	@Override
-	public boolean onDialogSelect(Player player, int dialogId, int questId, int extendedRewardIndex) {
-		QuestEnv env = new QuestEnv(getOwner(), player, questId, dialogId);
-		env.setExtendedRewardIndex(extendedRewardIndex);
-		if (QuestEngine.getInstance().onDialog(env)) {
-			return true;
-		}
-		if (dialogId == 10000) {
-			SkillEngine.getInstance().getSkill(getOwner(), 22788, 1, player).useWithoutPropSkill();
-		}
-		return true;
-	}
+  @Override
+  public boolean onDialogSelect(
+    Player player,
+    int dialogId,
+    int questId,
+    int extendedRewardIndex
+  ) {
+    QuestEnv env = new QuestEnv(getOwner(), player, questId, dialogId);
+    env.setExtendedRewardIndex(extendedRewardIndex);
+    if (QuestEngine.getInstance().onDialog(env)) {
+      return true;
+    }
+    if (dialogId == 10000) {
+      SkillEngine
+        .getInstance()
+        .getSkill(getOwner(), 22788, 1, player)
+        .useWithoutPropSkill();
+    }
+    return true;
+  }
 }

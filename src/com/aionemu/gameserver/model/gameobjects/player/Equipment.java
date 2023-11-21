@@ -713,6 +713,16 @@ public class Equipment {
 		return equippedItems;
 	}
 
+	public List<Item> getEquippedItemsAdvancedStigma() {
+		List<Item> equippedItems = new ArrayList<Item>();
+		for (Item item : equipment.values()) {
+			if (ItemSlot.isAdvancedStigma(item.getEquipmentSlot())) {
+				equippedItems.add(item);
+			}
+		}
+		return equippedItems;
+	}
+
 	public List<Item> getEquippedItemsEstima() {
 		List<Item> equippedItems = new ArrayList<Item>();
 		for (Item item : equipment.values()) {

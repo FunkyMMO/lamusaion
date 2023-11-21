@@ -24,6 +24,7 @@
 		</xs:sequence>
 		<xs:attribute name="skill" type="StigmaSkillList"/>
 		<xs:attribute name="shard" type="xs:int"/>
+		<xs:attribute name="price" type="xs:int"/>
 	</xs:complexType>
 	<xs:complexType name="WeaponStats">
 		<xs:attribute name="min_damage" type="xs:int"/>
@@ -124,7 +125,7 @@
 		<xs:attribute name="weapon_boost" type="xs:int"/>
 		<xs:attribute name="attack_type" type="ItemAttackType"/>
 		<xs:attribute name="attack_gap" type="xs:float"/>
-        <xs:attribute name="desc" type="xs:string" use="optional"/>
+    <xs:attribute name="desc" type="xs:string" use="optional"/>
 		<xs:attribute name="restrict" type="xs:string"/>
 		<xs:attribute name="restrict_max" type="xs:string"/>
 		<xs:attribute name="option_slot_bonus" type="xs:int"/>
