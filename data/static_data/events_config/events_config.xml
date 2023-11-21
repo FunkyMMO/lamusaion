@@ -3251,10 +3251,6 @@
 			<spawns>
 				<!-- Sanctum -->
 				<spawn_map map_id="110010000">
-					<!-- Eli -->
-					<spawn npc_id="834166">
-					    <spot x="1356.9445" y="1511.8994" z="569.0385" h="60"/>
-					</spawn>
 					<!-- Luna Object -->
 					<spawn npc_id="834252">
 					    <spot x="1356.9445" y="1511.8994" z="569.0385" h="60"/>
@@ -3262,10 +3258,6 @@
 				</spawn_map>
 				<!-- Iluma -->
 				<spawn_map map_id="210100000">
-					<!-- Eli -->
-					<spawn npc_id="834166">
-					    <spot h="98" z="336.663" y="1299.1953" x="1418.6478"/>
-					</spawn>
 					<!-- Luna Object -->
 					<spawn npc_id="834252">
 					    <spot h="98" z="336.663" y="1299.1953" x="1418.6478"/>
@@ -3273,10 +3265,6 @@
 				</spawn_map>
 				<!-- Pandaemonium -->
 				<spawn_map map_id="120010000">
-					<!-- Eli -->
-					<spawn npc_id="834166">
-					    <spot x="1618.7411" y="1400.5819" z="193.12743" h="0"/>
-					</spawn>
 					<!-- Luna Object -->
 					<spawn npc_id="834252">
 					    <spot x="1618.7411" y="1400.5819" z="193.12743" h="0"/>
@@ -3284,10 +3272,6 @@
 				</spawn_map>
 				<!-- Norsvold -->
 				<spawn_map map_id="220110000">
-					<!-- Eli -->
-					<spawn npc_id="834166">
-					    <spot h="43" z="197.80386" y="1967.1738" x="1798.1044"/>
-					</spawn>
 					<!-- Luna Object -->
 					<spawn npc_id="834252">
 					    <spot h="43" z="197.80386" y="1967.1738" x="1798.1044"/>
