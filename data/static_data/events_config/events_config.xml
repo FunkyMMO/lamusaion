@@ -1154,11 +1154,11 @@
 				<spawn_map map_id="110010000">
 					<!-- Rojelia -->
 					<spawn npc_id="800254">
-						<spot x="1525.0143" y="1509.2628" z="565.90076" h="61"/>
+						<spot x="1532.455" y="1509.2628" z="565.88776" h="61"/>
 					</spawn>
 					<!-- Erechi -->
 					<spawn npc_id="800255">
-						<spot x="1524.9126" y="1513.5365" z="565.9012" h="61"/>
+						<spot x="1532.2423" y="1513.8241" z="565.88763" h="61"/>
 					</spawn>
                 </spawn_map>
 				<!-- Pandaemonium -->
@@ -3357,16 +3357,6 @@
             <spawns>
 			    <!-- Sanctum -->
                 <spawn_map map_id="110010000">
-                    <!-- Laira
-					<The Generous> -->
-					<spawn npc_id="833671">
-                        <spot x="1365.1" y="1488.4" z="569.0384" h="31"/>
-                    </spawn>
-					<!-- Luvara
-					<The Generous> -->
-                    <spawn npc_id="833672">
-                        <spot x="1367.3" y="1488.4" z="569.0384" h="39"/>
-                    </spawn>
 					<!-- Rotund Ayas
 					<The Generous> -->
                     <spawn npc_id="833675">
@@ -3390,30 +3380,8 @@
                     </spawn>
                 </spawn_map>
 				<!-- Poeta -->
-                <spawn_map map_id="210010000">
-                    <!-- Laira
-					<The Generous> -->
-					<spawn npc_id="833671">
-                        <spot x="1198.2" y="1034.8" z="139.575" h="30"/>
-                    </spawn>
-					<!-- Luvara
-					<The Generous> -->
-                    <spawn npc_id="833672">
-                        <spot x="1195.2" y="1034.1" z="139.275" h="30"/>
-                    </spawn>
-                </spawn_map>
 				<!-- Pandaemonium -->
                 <spawn_map map_id="120010000">
-                    <!-- Laira
-					<The Generous> -->
-					<spawn npc_id="833673">
-                        <spot x="1631.2" y="1412.9" z="193.12704" h="90"/>
-                    </spawn>
-					<!-- Luvara
-					<The Generous> -->
-                    <spawn npc_id="833674">
-                        <spot x="1628.8" y="1412.9" z="193.1271" h="86"/>
-                    </spawn>
 					<!-- Rotund Ayas
 					<The Generous> -->
                     <spawn npc_id="833675">
@@ -3437,18 +3405,6 @@
                     </spawn>
                 </spawn_map>
 				<!-- Ishalgen -->
-                <spawn_map map_id="220010000">
-                    <!-- Laira
-					<The Generous> -->
-					<spawn npc_id="833673">
-                        <spot x="555.2" y="2773.9" z="299.37" h="36"/>
-                    </spawn>
-					<!-- Luvara
-					<The Generous> -->
-                    <spawn npc_id="833674">
-                        <spot x="552.4" y="2773.8" z="298.99" h="36"/>
-                    </spawn>
-                </spawn_map>
             </spawns>
         </event>
 		<event name="Toy Festival" start="2020-07-21T00:00:00+00:00" end="2020-07-31T00:00:00+00:00">
